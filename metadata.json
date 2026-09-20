@@ -1,0 +1,6 @@
+{
+  "name": "Cassette Atlantic",
+  "description": "A Chase Atlantic-inspired dark luxury music widget hub featuring late-night clocks, now playing cards, lyrics, audio visualizers, and moody aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
