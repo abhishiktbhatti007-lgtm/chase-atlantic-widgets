@@ -70,7 +70,7 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
 
             views.setTextViewText(R.id.widget_player_title, track.title)
             views.setTextViewText(R.id.widget_player_artist, track.artist)
-            views.setImageViewResource(R.id.widget_player_cover, track.coverRes)
+            views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)
 
             // Play/Pause icon
             views.setImageViewResource(

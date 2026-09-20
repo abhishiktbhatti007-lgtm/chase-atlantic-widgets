@@ -16,18 +16,14 @@
 
         <TextView
             android:id="@+id/widget_quote_tag"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:fontFamily="monospace"
             android:text="● 3:14 AM // MOOD"
             android:textColor="#FFFF1E56"
             android:textSize="10sp"
             android:textStyle="bold" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
 
         <ImageView
             android:id="@+id/widget_quote_refresh"
@@ -39,8 +35,8 @@
             android:src="@drawable/ic_widget_refresh" />
     </LinearLayout>
 
-    <View
-        android:layout_width="1dp"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
@@ -56,8 +52,8 @@
         android:textSize="14sp"
         android:textStyle="bold|italic" />
 
-    <View
-        android:layout_width="1dp"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
