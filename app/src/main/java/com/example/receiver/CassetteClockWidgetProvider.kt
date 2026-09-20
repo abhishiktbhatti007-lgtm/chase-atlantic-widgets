@@ -31,28 +31,36 @@ class CassetteClockWidgetProvider : AppWidgetProvider() {
         ) {
             val views = RemoteViews(context.packageName, R.layout.widget_clock)
 
-            // Dynamic Background
-            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
-                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
-                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
-                else -> R.drawable.widget_glass_bg
+            try {
+                // Dynamic Background
+                val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                    WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                    WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                    else -> R.drawable.widget_glass_bg
+                }
+                views.setImageViewResource(R.id.widget_clock_bg, bgRes)
+
+                // Dynamic Accent Color
+                val accentColor = WidgetSettingsManager.getAccentColor(context)
+                views.setTextColor(R.id.widget_clock_tag, accentColor)
+                views.setTextColor(R.id.widget_clock_ampm, accentColor)
+
+                // Dynamic Clock Format
+                val is24H = WidgetSettingsManager.is24Hour(context)
+                val showSec = WidgetSettingsManager.isShowSeconds(context)
+                if (is24H) {
+                    views.setCharSequence(R.id.widget_clock_time, "setFormat12Hour", "HH:mm")
+                    views.setCharSequence(R.id.widget_clock_time, "setFormat24Hour", "HH:mm")
+                    views.setViewVisibility(R.id.widget_clock_ampm, android.view.View.GONE)
+                } else {
+                    views.setCharSequence(R.id.widget_clock_time, "setFormat12Hour", "hh:mm")
+                    views.setCharSequence(R.id.widget_clock_time, "setFormat24Hour", "hh:mm")
+                    views.setViewVisibility(R.id.widget_clock_ampm, android.view.View.VISIBLE)
+                }
+                views.setViewVisibility(R.id.widget_clock_seconds, if (showSec) android.view.View.VISIBLE else android.view.View.GONE)
+            } catch (e: Throwable) {
+                e.printStackTrace()
             }
-            views.setInt(R.id.widget_clock_root, "setBackgroundResource", bgRes)
-
-            // Dynamic Accent Color
-            val accentColor = WidgetSettingsManager.getAccentColor(context)
-            views.setTextColor(R.id.widget_clock_tag, accentColor)
-            views.setTextColor(R.id.widget_clock_ampm, accentColor)
-
-            // Dynamic Clock Format
-            val is24H = WidgetSettingsManager.is24Hour(context)
-            val showSec = WidgetSettingsManager.isShowSeconds(context)
-            views.setString(R.id.widget_clock_time, "setFormat12Hour", if (is24H) "HH:mm" else "hh:mm")
-            views.setString(R.id.widget_clock_time, "setFormat24Hour", if (is24H) "HH:mm" else "hh:mm")
-            views.setString(R.id.widget_clock_ampm, "setFormat12Hour", if (is24H) " " else "a")
-            views.setString(R.id.widget_clock_ampm, "setFormat24Hour", " ")
-            views.setString(R.id.widget_clock_seconds, "setFormat12Hour", if (showSec) ":ss" else " ")
-            views.setString(R.id.widget_clock_seconds, "setFormat24Hour", if (showSec) ":ss" else " ")
 
             // Open app on click
             val intent = Intent(context, MainActivity::class.java).apply {

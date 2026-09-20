@@ -53,17 +53,21 @@ class CassetteQuoteWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_quote)
             val quote = quotes[currentQuoteIndex]
 
-            // Dynamic Background
-            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
-                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
-                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
-                else -> R.drawable.widget_glass_bg
-            }
-            views.setInt(R.id.widget_quote_root, "setBackgroundResource", bgRes)
+            try {
+                // Dynamic Background
+                val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                    WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                    WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                    else -> R.drawable.widget_glass_bg
+                }
+                views.setImageViewResource(R.id.widget_quote_bg, bgRes)
 
-            // Dynamic Accent Color
-            val accentColor = WidgetSettingsManager.getAccentColor(context)
-            views.setTextColor(R.id.widget_quote_tag, accentColor)
+                // Dynamic Accent Color
+                val accentColor = WidgetSettingsManager.getAccentColor(context)
+                views.setTextColor(R.id.widget_quote_tag, accentColor)
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
 
             views.setTextViewText(R.id.widget_quote_text, quote.text)
             views.setTextViewText(R.id.widget_quote_tag, quote.tag)

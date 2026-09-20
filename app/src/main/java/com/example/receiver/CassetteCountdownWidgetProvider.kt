@@ -54,18 +54,22 @@ class CassetteCountdownWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_countdown)
             val drop = drops[currentDropIndex]
 
-            // Dynamic Background
-            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
-                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
-                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
-                else -> R.drawable.widget_glass_bg
-            }
-            views.setInt(R.id.widget_countdown_root, "setBackgroundResource", bgRes)
+            try {
+                // Dynamic Background
+                val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                    WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                    WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                    else -> R.drawable.widget_glass_bg
+                }
+                views.setImageViewResource(R.id.widget_countdown_bg, bgRes)
 
-            // Dynamic Accent Color
-            val accentColor = WidgetSettingsManager.getAccentColor(context)
-            views.setTextColor(R.id.widget_countdown_tag, accentColor)
-            views.setTextColor(R.id.widget_countdown_days, accentColor)
+                // Dynamic Accent Color
+                val accentColor = WidgetSettingsManager.getAccentColor(context)
+                views.setTextColor(R.id.widget_countdown_tag, accentColor)
+                views.setTextColor(R.id.widget_countdown_days, accentColor)
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
 
             // Drop Info
             views.setTextViewText(R.id.widget_countdown_title, drop.title)

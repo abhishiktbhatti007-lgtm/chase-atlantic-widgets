@@ -68,23 +68,27 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_player)
             val track = tracks[currentTrackIndex]
 
-            // Dynamic Background
-            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
-                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
-                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
-                else -> R.drawable.widget_glass_bg
+            try {
+                // Dynamic Background
+                val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                    WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                    WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                    else -> R.drawable.widget_glass_bg
+                }
+                views.setImageViewResource(R.id.widget_player_bg, bgRes)
+
+                views.setTextViewText(R.id.widget_player_title, track.title)
+                views.setTextViewText(R.id.widget_player_artist, track.artist)
+                views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)
+
+                // Play/Pause icon
+                views.setImageViewResource(
+                    R.id.widget_player_play_pause,
+                    if (isPlaying) R.drawable.ic_widget_pause else R.drawable.ic_widget_play
+                )
+            } catch (e: Throwable) {
+                e.printStackTrace()
             }
-            views.setInt(R.id.widget_player_root, "setBackgroundResource", bgRes)
-
-            views.setTextViewText(R.id.widget_player_title, track.title)
-            views.setTextViewText(R.id.widget_player_artist, track.artist)
-            views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)
-
-            // Play/Pause icon
-            views.setImageViewResource(
-                R.id.widget_player_play_pause,
-                if (isPlaying) R.drawable.ic_widget_pause else R.drawable.ic_widget_play
-            )
 
             // Click root opens MainActivity
             val openIntent = Intent(context, MainActivity::class.java).apply {

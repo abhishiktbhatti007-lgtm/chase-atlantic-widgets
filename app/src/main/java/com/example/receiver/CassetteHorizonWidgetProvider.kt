@@ -31,18 +31,22 @@ class CassetteHorizonWidgetProvider : AppWidgetProvider() {
         ) {
             val views = RemoteViews(context.packageName, R.layout.widget_horizon)
 
-            // Dynamic Background
-            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
-                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
-                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
-                else -> R.drawable.widget_glass_bg
-            }
-            views.setInt(R.id.widget_horizon_root, "setBackgroundResource", bgRes)
+            try {
+                // Dynamic Background
+                val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                    WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                    WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                    else -> R.drawable.widget_glass_bg
+                }
+                views.setImageViewResource(R.id.widget_horizon_bg, bgRes)
 
-            // Dynamic Accent Color
-            val accentColor = WidgetSettingsManager.getAccentColor(context)
-            views.setTextColor(R.id.widget_horizon_header, accentColor)
-            views.setTextColor(R.id.widget_horizon_badge, accentColor)
+                // Dynamic Accent Color
+                val accentColor = WidgetSettingsManager.getAccentColor(context)
+                views.setTextColor(R.id.widget_horizon_header, accentColor)
+                views.setTextColor(R.id.widget_horizon_badge, accentColor)
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
 
             // Calculate hours until sunrise (assumed 6:00 AM)
             val cal = Calendar.getInstance()
