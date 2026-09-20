@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Cassette Atlantic</string>
+    <string name="widget_clock_desc">Oversized minimalist late-night clock</string>
+    <string name="widget_player_desc">Dark luxury music player card</string>
+    <string name="widget_quote_desc">Minimalist Chase Atlantic mood quote</string>
 </resources>

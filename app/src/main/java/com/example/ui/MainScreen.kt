@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.example.data.model.ClockStyle
 import com.example.data.model.WidgetType
 import com.example.ui.components.AmbientBackground
+import com.example.ui.components.PinWidgetsBanner
 import com.example.ui.components.QuickCustomizeSheet
 import com.example.ui.theme.*
 import com.example.ui.viewmodel.CassetteViewModel
@@ -66,6 +67,11 @@ fun MainScreen(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
+                // PIN TO HOME SCREEN BANNER
+                item(key = "pin_banner") {
+                    PinWidgetsBanner(themeAccent = uiState.themeAccent)
+                }
+
                 // CLOCK WIDGET
                 if (uiState.enabledWidgets.contains(WidgetType.CLOCK)) {
                     item(key = "clock") {
