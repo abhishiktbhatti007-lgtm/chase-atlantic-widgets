@@ -64,6 +64,55 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_quote_info" />
         </receiver>
+
+        <!-- Home Screen 3D Analog Chrono Clock Widget -->
+        <receiver
+            android:name=".receiver.CassetteAnalog3DWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_analog_3d_info" />
+        </receiver>
+
+        <!-- Home Screen 3D Cassette Tape Clock Widget -->
+        <receiver
+            android:name=".receiver.Cassette3DWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_cassette_3d_info" />
+        </receiver>
+
+        <!-- Home Screen Countdown Drop Radar Widget -->
+        <receiver
+            android:name=".receiver.CassetteCountdownWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.ACTION_WIDGET_CYCLE_COUNTDOWN" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_countdown_info" />
+        </receiver>
+
+        <!-- Home Screen Night Horizon & Lunar Phase Widget -->
+        <receiver
+            android:name=".receiver.CassetteHorizonWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_horizon_info" />
+        </receiver>
     </application>
 
 </manifest>

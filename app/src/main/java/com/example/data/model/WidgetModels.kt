@@ -7,6 +7,8 @@ import com.example.ui.theme.*
 
 enum class WidgetType(val title: String, val subtitle: String, val defaultEnabled: Boolean) {
     CLOCK("Digital Clock", "Oversized minimalist typography", true),
+    ANALOG_3D("3D Chrono Dial", "3D luxury metallic chronometer", true),
+    CASSETTE_3D("3D Cassette Tape", "3D floating cassette tape clock", true),
     NOW_PLAYING("Now Playing", "Album art & Spotify-style controls", true),
     AUDIO_VISUALIZER("Audio Visualizer", "Dynamic reactive frequency bars", true),
     LYRICS("Scrolling Lyrics", "Synced mood lyrics card", true),
@@ -34,7 +36,10 @@ enum class ThemeAccent(
     CRIMSON("Deep Crimson", CrimsonNeon, CrimsonGlow, CrimsonDeep),
     VIOLET("Neon Violet", VioletNeon, VioletGlow, VioletDeep),
     CHROME("Liquid Chrome", ChromeBright, ChromeEdge, ChromeDark),
-    CYAN("Electric Cyan", CyanNeon, CyanGlow, Color(0xFF005F73))
+    CYAN("Electric Cyan", CyanNeon, CyanGlow, Color(0xFF005F73)),
+    EMERALD("Neon Emerald", Color(0xFF00FF87), Color(0x4000FF87), Color(0xFF00381E)),
+    GOLD("Noir Amber Gold", Color(0xFFFFB300), Color(0x40FFB300), Color(0xFF4A3400)),
+    PINK("Hot Neon Pink", Color(0xFFFF007F), Color(0x40FF007F), Color(0xFF4A0025))
 }
 
 enum class AmbientMode(val displayName: String) {

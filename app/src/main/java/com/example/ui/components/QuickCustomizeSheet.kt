@@ -3,6 +3,7 @@ package com.example.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -114,14 +115,15 @@ fun QuickCustomizeSheet(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .horizontalScroll(androidx.compose.foundation.rememberScrollState()),
                         horizontalArrangement = Arrangement.spacedBy(10.dp)
                     ) {
                         ThemeAccent.values().forEach { accent ->
                             val isSelected = accent == themeAccent
                             Box(
                                 modifier = Modifier
-                                    .weight(1f)
                                     .clip(RoundedCornerShape(12.dp))
                                     .background(Color(0xFF08080E))
                                     .border(
@@ -130,7 +132,7 @@ fun QuickCustomizeSheet(
                                         RoundedCornerShape(12.dp)
                                     )
                                     .clickable { onSelectThemeAccent(accent) }
-                                    .padding(vertical = 10.dp),
+                                    .padding(horizontal = 14.dp, vertical = 10.dp),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Row(

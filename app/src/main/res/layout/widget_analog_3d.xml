@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_analog_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_glass_bg"
+    android:padding="8dp">
+
+    <!-- 3D Chrono Dial Art Face -->
+    <ImageView
+        android:id="@+id/widget_analog_dial_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_3d_analog_dial" />
+
+    <!-- Overlay Info -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/widget_analog_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="ATLANTIC"
+            android:textColor="#FFFF1E56"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Digital Center Plaque -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/widget_badge_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp">
+
+            <TextClock
+                android:id="@+id/widget_analog_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:format12Hour="hh:mm"
+                android:format24Hour="HH:mm"
+                android:textColor="#FFFFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextClock
+                android:id="@+id/widget_analog_ampm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:fontFamily="monospace"
+                android:format12Hour="a"
+                android:format24Hour=" "
+                android:textColor="#FFFF1E56"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextClock
+            android:id="@+id/widget_analog_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:format12Hour="EEE, MMM d"
+            android:format24Hour="EEE, MMM d"
+            android:textColor="#CCE0E0EB"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</FrameLayout>

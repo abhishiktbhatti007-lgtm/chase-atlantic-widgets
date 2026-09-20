@@ -68,6 +68,14 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
             val views = RemoteViews(context.packageName, R.layout.widget_player)
             val track = tracks[currentTrackIndex]
 
+            // Dynamic Background
+            val bgRes = when (WidgetSettingsManager.getBgStyle(context)) {
+                WidgetSettingsManager.BG_AMOLED_BLACK -> R.drawable.widget_bg_amoled
+                WidgetSettingsManager.BG_SMOKED_CARBON -> R.drawable.widget_bg_carbon
+                else -> R.drawable.widget_glass_bg
+            }
+            views.setInt(R.id.widget_player_root, "setBackgroundResource", bgRes)
+
             views.setTextViewText(R.id.widget_player_title, track.title)
             views.setTextViewText(R.id.widget_player_artist, track.artist)
             views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)

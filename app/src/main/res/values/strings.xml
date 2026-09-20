@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Cassette Atlantic</string>
     <string name="widget_clock_desc">Oversized minimalist late-night clock</string>
+    <string name="widget_analog_3d_desc">3D luxury dark chrome chronometer</string>
+    <string name="widget_cassette_3d_desc">3D floating audio cassette tape clock</string>
     <string name="widget_player_desc">Dark luxury music player card</string>
+    <string name="widget_countdown_desc">Tour and music drop countdown timer</string>
+    <string name="widget_horizon_desc">Late-night moon phase and sunrise tracker</string>
     <string name="widget_quote_desc">Minimalist Chase Atlantic mood quote</string>
 </resources>

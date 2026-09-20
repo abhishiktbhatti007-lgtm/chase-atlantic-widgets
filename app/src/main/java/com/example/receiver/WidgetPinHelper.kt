@@ -22,8 +22,24 @@ object WidgetPinHelper {
         return requestPin(context, CassetteClockWidgetProvider::class.java)
     }
 
+    fun pinAnalog3DWidget(context: Context): Boolean {
+        return requestPin(context, CassetteAnalog3DWidgetProvider::class.java)
+    }
+
+    fun pinCassette3DWidget(context: Context): Boolean {
+        return requestPin(context, Cassette3DWidgetProvider::class.java)
+    }
+
     fun pinPlayerWidget(context: Context): Boolean {
         return requestPin(context, CassettePlayerWidgetProvider::class.java)
+    }
+
+    fun pinCountdownWidget(context: Context): Boolean {
+        return requestPin(context, CassetteCountdownWidgetProvider::class.java)
+    }
+
+    fun pinHorizonWidget(context: Context): Boolean {
+        return requestPin(context, CassetteHorizonWidgetProvider::class.java)
     }
 
     fun pinQuoteWidget(context: Context): Boolean {

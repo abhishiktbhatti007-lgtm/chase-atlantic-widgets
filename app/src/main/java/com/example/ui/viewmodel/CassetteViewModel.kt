@@ -13,6 +13,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.local.WidgetSettingsEntity
 import com.example.data.model.*
 import com.example.data.repository.AppRepository
+import com.example.receiver.WidgetSettingsManager
+import androidx.compose.ui.graphics.toArgb
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -351,12 +353,21 @@ class CassetteViewModel(application: Application) : AndroidViewModel(application
         triggerHaptic()
         _uiState.update { it.copy(themeAccent = accent) }
         persistSettings()
+        val app = getApplication<Application>()
+        WidgetSettingsManager.setAccent(app, accent.primary.toArgb(), accent.displayName)
     }
 
     fun setAmbientMode(mode: AmbientMode) {
         triggerHaptic()
         _uiState.update { it.copy(ambientMode = mode) }
         persistSettings()
+        val app = getApplication<Application>()
+        val bgCode = when (mode) {
+            AmbientMode.PURE_AMOLED -> WidgetSettingsManager.BG_AMOLED_BLACK
+            AmbientMode.SMOKE_GLASS -> WidgetSettingsManager.BG_OBSIDIAN_GLASS
+            else -> WidgetSettingsManager.BG_SMOKED_CARBON
+        }
+        WidgetSettingsManager.setBgStyle(app, bgCode)
     }
 
     fun toggleNightMode() {

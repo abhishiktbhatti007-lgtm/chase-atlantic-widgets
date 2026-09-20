@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_cassette_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/widget_glass_bg"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <!-- 3D Cassette Art -->
+    <ImageView
+        android:id="@+id/widget_cassette_art"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:contentDescription="3D Cassette Tape"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_3d_cassette_art" />
+
+    <!-- Details Column -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <!-- Top Header Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/widget_cassette_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:text="3D CASSETTE // DECK"
+                android:textColor="#FFFF1E56"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/widget_cassette_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/widget_badge_bg"
+                android:fontFamily="monospace"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="REV 04"
+                android:textColor="#FFFF1E56"
+                android:textSize="9sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Big Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextClock
+                android:id="@+id/widget_cassette_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:format12Hour="hh:mm"
+                android:format24Hour="HH:mm"
+                android:textColor="#FFFFFFFF"
+                android:textSize="38sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical">
+
+                <TextClock
+                    android:id="@+id/widget_cassette_ampm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:format12Hour="a"
+                    android:format24Hour=" "
+                    android:textColor="#FFFF1E56"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextClock
+                    android:id="@+id/widget_cassette_sec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="monospace"
+                    android:format12Hour=":ss"
+                    android:format24Hour=":ss"
+                    android:textColor="#80FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Date & Mode -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextClock
+                android:id="@+id/widget_cassette_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="monospace"
+                android:format12Hour="EEEE, MMM d"
+                android:format24Hour="EEEE, MMM d"
+                android:textColor="#CCE0E0EB"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="TAPE IN ▶"
+                android:textColor="#66FFFFFF"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

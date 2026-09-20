@@ -92,6 +92,26 @@ fun MainScreen(
                     }
                 }
 
+                // 3D CHRONO DIAL WIDGET
+                if (uiState.enabledWidgets.contains(WidgetType.ANALOG_3D)) {
+                    item(key = "analog_3d") {
+                        Analog3DWidget(
+                            timeState = uiState.timeState,
+                            themeAccent = uiState.themeAccent
+                        )
+                    }
+                }
+
+                // 3D CASSETTE TAPE WIDGET
+                if (uiState.enabledWidgets.contains(WidgetType.CASSETTE_3D)) {
+                    item(key = "cassette_3d") {
+                        Cassette3DWidget(
+                            timeState = uiState.timeState,
+                            themeAccent = uiState.themeAccent
+                        )
+                    }
+                }
+
                 // NOW PLAYING WIDGET
                 if (uiState.enabledWidgets.contains(WidgetType.NOW_PLAYING)) {
                     item(key = "now_playing") {
