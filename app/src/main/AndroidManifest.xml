@@ -28,6 +28,7 @@
         <!-- Home Screen Clock Widget -->
         <receiver
             android:name=".receiver.CassetteClockWidgetProvider"
+            android:label="Minimalist Clock (4x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -40,6 +41,7 @@
         <!-- Home Screen Music Player Widget -->
         <receiver
             android:name=".receiver.CassettePlayerWidgetProvider"
+            android:label="Spotify Music Player (4x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -55,6 +57,7 @@
         <!-- Home Screen Quote Widget -->
         <receiver
             android:name=".receiver.CassetteQuoteWidgetProvider"
+            android:label="Mood Quotes (4x1)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -68,6 +71,7 @@
         <!-- Home Screen 3D Analog Chrono Clock Widget -->
         <receiver
             android:name=".receiver.CassetteAnalog3DWidgetProvider"
+            android:label="3D Chrono Dial (2x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -80,6 +84,7 @@
         <!-- Home Screen 3D Cassette Tape Clock Widget -->
         <receiver
             android:name=".receiver.Cassette3DWidgetProvider"
+            android:label="3D Cassette Tape (4x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -92,6 +97,7 @@
         <!-- Home Screen Countdown Drop Radar Widget -->
         <receiver
             android:name=".receiver.CassetteCountdownWidgetProvider"
+            android:label="Drop Countdown (4x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -105,6 +111,7 @@
         <!-- Home Screen Night Horizon & Lunar Phase Widget -->
         <receiver
             android:name=".receiver.CassetteHorizonWidgetProvider"
+            android:label="Night Horizon (4x2)"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -113,6 +120,28 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_horizon_info" />
         </receiver>
+
+        <!-- Spotify Broadcast Receiver for zero-permission real-time song detection -->
+        <receiver
+            android:name=".receiver.SpotifyBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.spotify.music.metadatachanged" />
+                <action android:name="com.spotify.music.playbackstatechanged" />
+                <action android:name="com.spotify.music.queuechanged" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Media Notification Listener Service for full Spotify / Phone Media Sync & Controls -->
+        <service
+            android:name=".service.CassetteMediaListenerService"
+            android:exported="true"
+            android:label="Cassette Media Sync"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

@@ -26,15 +26,18 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
         super.onReceive(context, intent)
         when (intent.action) {
             ACTION_PLAY_PAUSE -> {
+                MediaSyncManager.playPause()
                 isPlaying = !isPlaying
                 updateAll(context)
             }
             ACTION_NEXT -> {
+                MediaSyncManager.next()
                 currentTrackIndex = (currentTrackIndex + 1) % tracks.size
                 isPlaying = true
                 updateAll(context)
             }
             ACTION_PREV -> {
+                MediaSyncManager.previous()
                 currentTrackIndex = if (currentTrackIndex - 1 < 0) tracks.size - 1 else currentTrackIndex - 1
                 isPlaying = true
                 updateAll(context)
@@ -66,7 +69,10 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
             appWidgetId: Int
         ) {
             val views = RemoteViews(context.packageName, R.layout.widget_player)
-            val track = tracks[currentTrackIndex]
+            val live = com.example.service.MediaSyncManager.liveState.value
+            val title = if (live.isLiveSynced) live.title else tracks[currentTrackIndex].title
+            val artist = if (live.isLiveSynced) live.artist else tracks[currentTrackIndex].artist
+            val playing = if (live.isLiveSynced) live.isPlaying else isPlaying
 
             try {
                 // Dynamic Background
@@ -77,14 +83,19 @@ class CassettePlayerWidgetProvider : AppWidgetProvider() {
                 }
                 views.setImageViewResource(R.id.widget_player_bg, bgRes)
 
-                views.setTextViewText(R.id.widget_player_title, track.title)
-                views.setTextViewText(R.id.widget_player_artist, track.artist)
-                views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)
+                views.setTextViewText(R.id.widget_player_title, title)
+                views.setTextViewText(R.id.widget_player_artist, artist)
+                
+                if (live.albumArt != null) {
+                    views.setImageViewBitmap(R.id.widget_player_cover, live.albumArt)
+                } else {
+                    views.setImageViewResource(R.id.widget_player_cover, R.drawable.ic_album_art)
+                }
 
                 // Play/Pause icon
                 views.setImageViewResource(
                     R.id.widget_player_play_pause,
-                    if (isPlaying) R.drawable.ic_widget_pause else R.drawable.ic_widget_play
+                    if (playing) R.drawable.ic_widget_pause else R.drawable.ic_widget_play
                 )
             } catch (e: Throwable) {
                 e.printStackTrace()

@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        com.example.service.MediaSyncManager.init(applicationContext)
         enableEdgeToEdge()
         setContent {
             MyApplicationTheme {
@@ -28,6 +29,11 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        com.example.service.MediaSyncManager.refreshActiveSessions()
     }
 }
 
